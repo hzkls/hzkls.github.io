@@ -1,0 +1,614 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>dubbo篇 | 沪指傀儡师</title><meta name="author" content="沪指傀儡师"><meta name="copyright" content="沪指傀儡师"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.Dubbo 是什么？RPC 又是什么？ Dubbo 是一个分布式服务框架，致力于提供高性能和透明化的 RPC 远程服务调用方案，以及 SOA 服务治理方案。 RPC是远程调用，就是本地机器调用远程机器的一个方法，远程机器返回结果的过程。 主要原因是由于单台服务的性能已经无法满足我们了，在这个流量剧增的时代，只有多台服务器才能支撑起来现有的用户体系， 而在这种体系下，服务越来越多，逐渐演化出了现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dubbo篇">
+<meta property="og:url" content="https://hzkls.github.io/posts/bcb6930d.html">
+<meta property="og:site_name" content="沪指傀儡师">
+<meta property="og:description" content="1.Dubbo 是什么？RPC 又是什么？ Dubbo 是一个分布式服务框架，致力于提供高性能和透明化的 RPC 远程服务调用方案，以及 SOA 服务治理方案。 RPC是远程调用，就是本地机器调用远程机器的一个方法，远程机器返回结果的过程。 主要原因是由于单台服务的性能已经无法满足我们了，在这个流量剧增的时代，只有多台服务器才能支撑起来现有的用户体系， 而在这种体系下，服务越来越多，逐渐演化出了现">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/05/09/KSc4rABW8UI7iRD.jpg">
+<meta property="article:published_time" content="2022-03-02T05:43:14.000Z">
+<meta property="article:modified_time" content="2022-03-02T05:43:14.000Z">
+<meta property="article:author" content="沪指傀儡师">
+<meta property="article:tag" content="java面试八股文">
+<meta property="article:tag" content="dubbo篇">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/05/09/KSc4rABW8UI7iRD.jpg"><link rel="shortcut icon" href="/self/img/favicon.png"><link rel="canonical" href="https://hzkls.github.io/posts/bcb6930d.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.15/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'dubbo篇',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-02 13:43:14'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/self/css/badge.css" /><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/self/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 快速导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Go%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88/"><i class="fa-fw fa-brands fa-golang"></i><span> Go开发工程师</span></a></li><li><a class="site-page child" href="/categories/java%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87/"><i class="fa-fw fa-brands fa-java"></i><span> java面试八股文</span></a></li><li><a class="site-page child" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9B%86%E5%90%88/"><i class="fa-fw fa-solid fa-group-arrows-rotate"></i><span> 中间件集合</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/05/09/KSc4rABW8UI7iRD.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="沪指傀儡师"><span class="site-name">沪指傀儡师</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 快速导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Go%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88/"><i class="fa-fw fa-brands fa-golang"></i><span> Go开发工程师</span></a></li><li><a class="site-page child" href="/categories/java%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87/"><i class="fa-fw fa-brands fa-java"></i><span> java面试八股文</span></a></li><li><a class="site-page child" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9B%86%E5%90%88/"><i class="fa-fw fa-solid fa-group-arrows-rotate"></i><span> 中间件集合</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">dubbo篇</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-02T05:43:14.000Z" title="发表于 2022-03-02 13:43:14">2022-03-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-02T05:43:14.000Z" title="更新于 2022-03-02 13:43:14">2022-03-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/java%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87/">java面试八股文</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="dubbo篇"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-Dubbo-是什么？RPC-又是什么？">1.Dubbo 是什么？RPC 又是什么？</h2>
+<p><strong>Dubbo 是一个分布式服务框架</strong>，致力于提供高性能和透明化的 RPC 远程服务调用方案，以及 SOA 服务治理方案。</p>
+<p><strong>RPC是远程调用，就是本地机器调用远程机器的一个方法，远程机器返回结果的过程</strong>。</p>
+<p>主要原因是由于单台服务的性能已经无法满足我们了，在这个流量剧增的时代，只有<strong>多台服务器</strong>才能支撑起来现有的用户体系，</p>
+<p>而在这种体系下，服务越来越多，逐渐演化出了现在这种微服务化的 RPC 框架。</p>
+<h2 id="2-Dubbo-能做什么？">2. Dubbo 能做什么？</h2>
+<p>Dubbo 的核心功能主要包含:</p>
+<p><img src="https://s2.loli.net/2023/05/13/WMCYq9ZfHJ2AGOw.png" alt="img"></p>
+<ol>
+<li><strong>远程通讯: dubbo-remoting</strong>模块， 提供对多种基于长连接的 NIO 框架抽象封装，包括多种线程模型，序列化，以及“请求-响应”模式的信息交换方式。</li>
+<li><strong>集群容错</strong>: 提供基于接口方法的透明远程过程调用，包括多协议支持，以及软负载均衡，失败容错，地址路由，动态配置等集群支持。</li>
+<li><strong>自动发现</strong>: 基于注册中心目录服务，使服务消费方能动态的查找服务提供方，使地址透明，使服务提供方可以平滑增加或减少机器。</li>
+</ol>
+<h2 id="3-能说下-Dubbo-的总体的调用过程吗？">3.能说下 Dubbo 的总体的调用过程吗？</h2>
+<p>调用过程图：</p>
+<img src="https://s2.loli.net/2023/05/13/L1OqJvK7yZU2gFW.png" alt="img" style="zoom:67%;" />
+<ol>
+<li>
+<p>Proxy 持有一个 Invoker 对象，<strong>使用 Invoker 调用</strong></p>
+</li>
+<li>
+<p>之后通过<strong>Cluster 进行负载容错</strong>，失败重试</p>
+</li>
+<li>
+<p>调用 Directory<strong>获取远程服务的 Invoker</strong>列表</p>
+</li>
+<li>
+<p>负载均衡</p>
+<ul>
+<li>
+<p>用户<strong>配置了路由规则</strong>，则根据路由规则过滤获取到的 Invoker 列表</p>
+</li>
+<li>
+<p>用户没<strong>有配置路由规则或配置路由后还有很多节点</strong>，则使用 <strong>LoadBalance</strong> 方法做负载均衡，选用一个可以调用的 Invoker</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>经过一个一个过滤器链</strong>，通常是处理上下文、限流、计数等。</p>
+</li>
+<li>
+<p>会<strong>使用 Client 做数据传输</strong></p>
+</li>
+<li>
+<p><strong>私有化协议的构造</strong>(Codec)</p>
+</li>
+<li>
+<p>进行<strong>序列化</strong></p>
+</li>
+<li>
+<p>服务端收到这个 Request 请求，将其<strong>分配到 ThreadPool</strong>中进行处理</p>
+</li>
+<li>
+<p><strong>Server 来处理这些 Request</strong></p>
+</li>
+<li>
+<p>根据<strong>请求查找对应的 Exporter</strong></p>
+</li>
+<li>
+<p>之后经过一个服务提供者端的<strong>过滤器链</strong></p>
+</li>
+<li>
+<p>然后找到接口实现并<strong>真正的调用</strong>，将请求结果返回</p>
+</li>
+</ol>
+<h2 id="4-说说-Dubbo-支持哪些协议，每种协议的应用场景和优缺点">4.说说 Dubbo 支持哪些协议，每种协议的应用场景和优缺点</h2>
+<p><img src="https://s2.loli.net/2023/05/13/VkyxXRdl5DYbBWC.png" alt="img"></p>
+<ul>
+<li><strong>dubbo</strong>：单一长连接和 NIO 异步通讯，适合大并发小数据量的服务调用，以及消费者远大于提供者。传输协议 TCP，异步，Hessian 序列化</li>
+<li><strong>rmi</strong>：采用 JDK 标准的 rmi 协议实现，传输参数和返回参数对象需要实现 Serializable 接口，使用 java 标准序列化机制，使用阻塞式短连接，传输数据包大小混合，消费者和提供者个数差不多，可传文件，传输协议 TCP。多个短连接，TCP 协议传输，同步传输，适用常规的远程服务调用和 rmi 互 操作。在依赖低版本的 Common-Collections 包，java 序列化存在安全漏洞</li>
+<li><strong>webservice</strong>：基于 WebService 的远程调用协议，集成 CXF 实现，提供和原生 WebService 的互操作。多个短连接，基于 HTTP 传输，同步传输，适用系统集成和跨语言调用；</li>
+<li><strong>http</strong>：基于 Http 表单提交的远程调用协议，使用 Spring 的 HttpInvoke 实 现。多个短连接，传输协议 HTTP，传入参数大小混合，提供者个数多于消 费者，需要给应用程序和浏览器 JS 调用</li>
+<li><strong>hessian</strong>：集成 Hessian 服务，基于 HTTP 通讯，采用 Servlet 暴露服务，Dubbo 内嵌 Jetty 作为服务器时默认实现，提供与 Hession 服务互操作。多个短连接，同步 HTTP 传输，Hessian 序列化，传入参数较大，提供者大于消费者，提供者压力较大，可传文件；</li>
+<li><strong>memcache</strong>：基于 memcached 实现的 RPC 协议</li>
+<li><strong>redis</strong>：基于 redis 实现的 RPC 协议</li>
+</ul>
+<h2 id="5-Dubbo-中都用到哪些设计模式？">5.Dubbo 中都用到哪些设计模式？</h2>
+<p><img src="https://s2.loli.net/2023/05/13/Rl7Jq69dTEzjChO.png" alt="img"></p>
+<p><strong>责任链模式</strong>:</p>
+<p>责任链模式在 Dubbo 中发挥的作用举足轻重，就像是 Dubbo 框架的骨架。Dubbo 的调用链组织是用责任链模式串连起来的。责任链中的每个节点实现 Filter 接口，然后由 ProtocolFilterWrapper，将所有 Filter 串连起来。Dubbo 的许多功能都是通过 Filter 扩展实现的，比如监控、日志、缓存、安全、telnet 以及 RPC 本身都是。</p>
+<p><strong>观察者模式</strong>:</p>
+<p>Dubbo 中使用观察者模式最典型的例子是 RegistryService。消费者在初始化的时候回调用 subscribe 方法，注册一个观察者，如果观察者引用的服务地址列表发生改变，就会通过 NotifyListener 通知消费者。此外，Dubbo 的 InvokerListener、ExporterListener 也实现了观察者模式，只要实现该接口，并注册，就可以接收到 consumer 端调用 refer 和 provider 端调用 export 的通知。</p>
+<p><strong>修饰器模式</strong>:</p>
+<p>Dubbo 中还大量用到了修饰器模式。比如 ProtocolFilterWrapper 类是对 Protocol 类的修饰。在 export 和 refer 方法中，配合责任链模式，把 Filter 组装成责任链，实现对 Protocol 功能的修饰。其他还有 ProtocolListenerWrapper、 ListenerInvokerWrapper、InvokerWrapper 等。</p>
+<p><strong>工厂方法模式</strong>:</p>
+<p>CacheFactory 的实现采用的是工厂方法模式。CacheFactory 接口定义 getCache 方法，然后定义一个 AbstractCacheFactory 抽象类实现 CacheFactory，并将实际创建 cache 的 createCache 方法分离出来，并设置为抽象方法。这样具体 cache 的创建工作就留给具体的子类去完成。</p>
+<p><strong>抽象工厂模式</strong>:</p>
+<p>ProxyFactory 及其子类是 Dubbo 中使用抽象工厂模式的典型例子。ProxyFactory 提供两个方法，分别用来生产 Proxy 和 Invoker（这两个方法签名看起来有些矛盾，因为 getProxy 方法需要传入一个 Invoker 对象，而 getInvoker 方法需要传入一个 Proxy 对象，看起来会形成循环依赖，但其实两个方式使用的场景不一样）。AbstractProxyFactory 实现了 ProxyFactory 接口，作为具体实现类的抽象父类。然后定义了 JdkProxyFactory 和 JavassistProxyFactory 两个具体类，分别用来生产基于 jdk 代理机制和基于 javassist 代理机制的 Proxy 和 Invoker。</p>
+<p><strong>适配器模式</strong>:</p>
+<p>为了让用户根据自己的需求选择日志组件，Dubbo 自定义了自己的 Logger 接口，并为常见的日志组件（包括 jcl, jdk, log4j, slf4j）提供相应的适配器。并且利用简单工厂模式提供一个 LoggerFactory，客户可以创建抽象的 Dubbo 自定义 Logger，而无需关心实际使用的日志组件类型。在 LoggerFactory 初始化时，客户通过设置系统变量的方式选择自己所用的日志组件，这样提供了很大的灵活性。</p>
+<p><strong>代理模式</strong>:</p>
+<p>Dubbo consumer 使用 Proxy 类创建远程服务的本地代理，本地代理实现和远程服务一样的接口，并且屏蔽了网络通信的细节，使得用户在使用本地代理的时候，感觉和使用本地服务一样。</p>
+<h2 id="6-如果-Dubbo-中-provider-提供的服务由多个版本怎么办？">6.如果 Dubbo 中 provider 提供的服务由多个版本怎么办？</h2>
+<p>可以直接通过 Dubbo 配置中的 version 版本来控制多个版本即可。</p>
+<p>比如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dubbo:service</span> <span class="attr">interface</span>=<span class="string">&quot;com.xxxx.rent.service.IDemoService&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;iDemoServiceFirst&quot;</span> <span class="attr">version</span>=<span class="string">&quot;1.0.0&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dubbo:service</span> <span class="attr">interface</span>=<span class="string">&quot;com.xxxx.rent.service.IDemoService&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;iDemoServiceSecond&quot;</span> <span class="attr">version</span>=<span class="string">&quot;1.0.1&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-服务暴露的流程是怎么样的？">7.服务暴露的流程是怎么样的？</h2>
+<p><img src="https://s2.loli.net/2023/05/13/qZQAueKgNiG72zp.png" alt="img"></p>
+<p>1.通过 ServiceConfig 解析标签，创建 dubbo 标签解析器来<strong>解析 dubbo 的标签</strong>，容器创建完成之后，<strong>触发 ContextRefreshEvent 事件回调开始暴露服务</strong></p>
+<p>2.通过 proxyFactory.getInvoker 方法，并利用<strong>javassist 或 DdkProxyFactory 来进行动态代理</strong>，将服务暴露接口<strong>封装成 invoke</strong>r 对象，里面包含了需要执行的方法的对象信息和具体的 URL 地址。</p>
+<p>3.再通过 DubboProtocol 的实现把包装后的<strong>invoker 转换成 exporter</strong>，</p>
+<p>4.然后<strong>启动服务器 server</strong>，监听端口</p>
+<p>5.最后 RegistryProtocol 保存 URL 地址和 invoker 的映射关系，同时<strong>注册到服务中心</strong></p>
+<p><img src="https://s2.loli.net/2023/05/13/jYcesW1RDPILu6N.png" alt="img"></p>
+<h2 id="8-服务引用的流程是怎么样的？">8.服务引用的流程是怎么样的？</h2>
+<p>1.首先客户端根据 config 文件信息从注册中心<strong>订阅服务</strong>，首次会全量<strong>缓存到本地</strong>，后续的更新会监听动态更新到本地。</p>
+<p>2.之后 DubboProtocol<strong>根据 provider</strong>的地址和接口信息<strong>连接到服务端</strong>server，<strong>开启客户端 clien</strong>t，然后创建 invoker</p>
+<p>3.之后通过 invoker 为服务接口<strong>生成代理对象</strong>，这个代理对象用于远程调用 provider，至此完成了服务引用</p>
+<p><img src="https://s2.loli.net/2023/05/13/NYzF5MoehnP8y4k.png" alt="img"></p>
+<h2 id="9-Dubbo-的注册中心有哪些？">9.Dubbo 的注册中心有哪些？</h2>
+<p><img src="https://s2.loli.net/2023/05/13/bFtgNT5S48uxsAz.png" alt="img"></p>
+<p>Zookeeper、Redis、Multicast、Simple 等都可以作为 Dubbo 的注册中心</p>
+<h2 id="10-聊聊-Dubbo-SPI-机制？">10.聊聊 Dubbo SPI 机制？</h2>
+<p>SPI(Service Provider Interface)，是一种<strong>服务发现机制</strong>，其实就是将结构的实现类写入配置当中，在服务加载的时候将配置文件独处，加载实现类，这样就可以在运行的时候，<strong>动态的帮助接口替换实现类</strong>。</p>
+<p>Dubbo 的 SPI 其实是对 java 的 SPI 进行了一种增强,可以按需加载实现类之外，增加了 IOC 和 AOP 的特性，还有<strong>自适应扩展</strong>机制。</p>
+<p>SPI 在 dubbo 应用很多，包括协议扩展、集群扩展、路由扩展、序列化扩展等等。</p>
+<p>Dubbo 对于文件目录的配置分为了<strong>三类</strong>。</p>
+<ul>
+<li>1.META-INF/services/ 目录：该目录下的 SPI 配置文件是为了用来兼容 Java SPI 。</li>
+<li>2.META-INF/dubbo/ 目录：该目录存放用户自定义的 SPI 配置文件。</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key=com.xxx.xxx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>3.META-INF/dubbo/internal/ 目录：该目录存放 Dubbo 内部使用的 SPI 配置文件。</li>
+</ul>
+<h2 id="11-Dubbo-的-SPi-和-Java-的-SPI-有什么区别？">11.Dubbo 的 SPi 和 Java 的 SPI 有什么区别？</h2>
+<p><img src="https://s2.loli.net/2023/05/13/4JPH67o1nbZcTED.png" alt="img"></p>
+<p><strong>Java Spi</strong></p>
+<ul>
+<li>Java SPI 在查找扩展实现类的时候遍历 SPI 的配置文件并且将实现类<strong>全部实例化</strong></li>
+</ul>
+<p><strong>Dubbo Spi</strong></p>
+<ul>
+<li>1，对 Dubbo 进行扩展，不需要改动 Dubbo 的源码</li>
+<li>2，延迟加载，可以一次<strong>只加载自己想要加载的</strong>扩展实现。</li>
+<li>3，增加了对扩展点 IOC 和 AOP 的支持，一个扩展点可以直接 setter 注入其它扩展点。</li>
+<li>4，Dubbo 的扩展机制能很好的支持第三方 IoC 容器，默认支持 Spring Bean。</li>
+</ul>
+<h2 id="12-有哪些负载均衡策略？">12.有哪些负载均衡策略？</h2>
+<p><strong>1.加权随机</strong>：比如我们有三台服务器[A, B, C]，给他们设置权重为[4, 5, 6]，然后讲这三个数平铺在水平线上，和为 15。</p>
+<p>然后在 15 以内生成一个随机数，0 ～ 4 是服务器 A，4 ～ 9 是服务器 B，9 ～ 15 是服务器 C</p>
+<p><img src="https://s2.loli.net/2023/05/13/yrWaBwqGJiYdQC4.png" alt="img"></p>
+<p><strong>2.最小活跃数</strong>：每个服务提供者对应一个活跃数 active，初始情况下，所有服务提供者活跃数均为 0。每收到一个请求，活跃数加 1，完成请求后则将活跃数减 1。在服务运行一段时间后，性能好的服务提供者处理请求的速度更快，因此活跃数下降的也越快，此时这样的服务提供者能够优先获取到新的服务请求。</p>
+<p><img src="https://s2.loli.net/2023/05/13/VzhiAxbLKqITZft.png" alt="img"></p>
+<p><strong>3.一致性 hash</strong>：</p>
+<ul>
+<li>首先求出 memcached 服务器（节点）的哈希值，并将其配置到 0 ～ 2 的 32 次方的圆（continuum）上。</li>
+<li>然后采用同样的方法求出存储数据的键的哈希值，并映射到相同的圆上。</li>
+<li>然后从数据映射到的位置开始顺时针查找，将数据保存到找到的第一个服务器上。如果超过 2 的 32 次方仍然找不到服务器，就会保存到第一台 memcached 服务器上。</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/05/13/7bThr29fXj8tHzO.png" alt="img"></p>
+<p><strong>4.加权轮询</strong>：比如我们有三台服务器[A, B, C]，给他们设置权重为[4, 5, 6]，那么假如总共有 15 次请求，那么会有 4 次落在 A 服务器，5 次落在 B 服务器，6 次落在 C 服务器。</p>
+<p><img src="https://s2.loli.net/2023/05/13/59Kx2py7SBzJg8h.png" alt="img"></p>
+<h2 id="13-集群容错方式有哪些？">13.集群容错方式有哪些？</h2>
+<p>1.<strong>Failover Cluster 失败自动切换</strong>：dubbo 的默认容错方案，当调用失败时自动切换到其他可用的节点，具体的重试次数和间隔时间可用通过引用服务的时候配置，默认重试次数为 1 是只调用一次。</p>
+<p>2.<strong>Failback Cluster 失败自动恢复</strong>：在调用失败，记录日志和调用信息，然后返回空结果给 consumer，并且通过定时任务每隔 5 秒对失败的调用进行重试</p>
+<p>3.<strong>Failfast Cluster 快速失败</strong>：只会调用一次，失败后立刻抛出异常</p>
+<p>4.<strong>Failsafe Cluster 失败安全</strong>：调用出现异常，记录日志不抛出，返回空结果</p>
+<p>5.<strong>Forking Cluster 并行调用多个服务提供者</strong>：通过线程池创建多个线程，并发调用多个 provider，结果保存到阻塞队列，只要有一个 provider 成功返回了结果，就会立刻返回结果</p>
+<p>6.<strong>Broadcast Cluster 广播模式</strong>：逐个调用每个 provider，如果其中一台报错，在循环调用结束后，抛出异常。</p>
+<h2 id="14-说说-Dubbo-的分层？">14.说说 Dubbo 的分层？</h2>
+<p>分层图：</p>
+<p><img src="https://s2.loli.net/2023/05/13/1Y8itzqOsDTbGmw.png" alt="img"></p>
+<p>从大的范围来说，dubbo 分为三层</p>
+<ul>
+<li><strong>business</strong>业务逻辑层由我们自己来提供接口和实现还有一些配置信息</li>
+<li><strong>RPC</strong>层就是真正的 RPC 调用的核心层，封装整个 RPC 的调用过程、负载均衡、集群容错、代理</li>
+<li><strong>remoting</strong>则是对网络传输协议和数据转换的封装。</li>
+</ul>
+<p>Service 和 Config 两层可以认为是<strong>API</strong>层，主要提供给<strong>API 使用者</strong>，使用者只需要配置和完成业务代码就可以了。</p>
+<p>后面所有的层级是<strong>SPI</strong>层，主 要提供给扩展者使用主要是用来做<strong>Dubbo 的二次开发</strong>扩展功能。</p>
+<p>再划分到更细的层面，就是图中的 10 层模式。</p>
+<h2 id="16-为什么要通过代理对象通信？？">16.为什么要通过代理对象通信？？</h2>
+<p><img src="https://s2.loli.net/2023/05/13/x7hLHKq6YSloIna.png" alt="img"></p>
+<p>其实主要就是为了将调用细节封装起来，将调用远程方法变得和调用本地方法一样简单，还可以做一些其他方面的增强，比如负载均衡，容错机制，过滤操作，调用数据的统计。</p>
+<h2 id="17-怎么设计一个RPC框架？">17.怎么设计一个RPC框架？</h2>
+<p>关于这个问题，其实核心考察点就是你<strong>对于RPC框架的理解</strong>，一个成熟的RPC框架<strong>可以完成哪些功能</strong>，其实当我们看过一两个RPC框架后，就可以对这个问题回答个七七八八了，我们来举个例子。</p>
+<img src="https://s2.loli.net/2023/05/13/xWeVFU2BGHjcJsz.png" alt="图片" style="zoom:50%;" />
+<p>1.首先我们得需要一个<strong>注册中心</strong>，去管理消费者和提供者的节点信息，这样才会有消费者和提供才可以去订阅服务，注册服务。</p>
+<p>2.当有了注册中心后，可能会有很多个provider节点，那么我们肯定会有一个<strong>负载均衡</strong>模块来负责节点的调用，至于用户指定路由规则可以使一个额外的优化点。</p>
+<p>3.具体的调用肯定会需要牵扯到通信协议，所以需要一个模块来对<strong>通信协议进行封装</strong>，网络传输还要考虑序列化。</p>
+<p>4.当调用失败后怎么去处理？所以我们还需要一个<strong>容错模块</strong>，来负责失败情况的处理。</p>
+<p>5.其实做完这些一个基础的模型就已经搭建好了，我们还可以有更多的优化点，比如一些请求<strong>数据的监控，配置信息的处理，日志信息的处理</strong>等等。</p>
+<h2 id="18-Dubbo的服务发现流程">18.Dubbo的服务发现流程</h2>
+<ol>
+<li>服务提供者启动时，向Zookeeper注册自己的服务接口和地址信息；</li>
+<li>服务消费者启动时，向Zookeeper订阅自己需要的服务接口；</li>
+<li>Zookeeper返回服务提供者地址信息给服务消费者；</li>
+<li>服务消费者从多个服务提供者中选择一个进行调用。</li>
+</ol>
+<div class="note info flat"><p>具体地，服务提供者在向Zookeeper注册服务接口信息时，会在Zookeeper上创建一个临时节点，该节点包含服务接口名、IP地址和端口等信息。同时，Zookeeper还会监听该节点的变化，当服务提供者下线时或者其他异常情况发生时，Zookeeper会删除该节点。</p>
+<p>服务消费者在向Zookeeper订阅服务接口时，会创建一个持久化节点来监听服务状态的变化，并在该节点下创建订阅的服务接口节点。一旦有新的服务提供者注册到Zookeeper中，服务消费者能够立刻收到通知，从而获取到最新的服务接口地址列表。</p>
+<p>服务消费者根据负载均衡策略，从多个服务提供者中进行选择，并缓存选取的服务提供者地址。如果某个服务提供者异常或下线，服务消费者会将其从缓存中删除，并重新选择可用的服务提供者。</p>
+</div>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://hzkls.github.io">沪指傀儡师</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hzkls.github.io/posts/bcb6930d.html">https://hzkls.github.io/posts/bcb6930d.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hzkls.github.io" target="_blank">沪指傀儡师</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87/">java面试八股文</a><a class="post-meta__tags" href="/tags/dubbo%E7%AF%87/">dubbo篇</a></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2023/05/09/KSc4rABW8UI7iRD.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/ea4e979e.html" title="23种设计模式"><img class="cover" src="https://s2.loli.net/2023/05/09/gtd4hzO6FN1D8HT.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">23种设计模式</div></div></a></div><div class="next-post pull-right"><a href="/posts/64613c36.html" title="elasticsearch篇"><img class="cover" src="https://s2.loli.net/2023/06/13/5PzbQsX1IAdYxBO.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">elasticsearch篇</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/ab05b615.html" title="HashMap精选13问"><img class="cover" src="https://s2.loli.net/2023/05/09/qRDBZQuSOdhnHU1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-11</div><div class="title">HashMap精选13问</div></div></a></div><div><a href="/posts/64613c36.html" title="elasticsearch篇"><img class="cover" src="https://s2.loli.net/2023/06/13/5PzbQsX1IAdYxBO.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-03</div><div class="title">elasticsearch篇</div></div></a></div><div><a href="/posts/80596e28.html" title="kafka篇"><img class="cover" src="https://s2.loli.net/2023/05/09/MESRB4gp1CVsKAm.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-11</div><div class="title">kafka篇</div></div></a></div><div><a href="/posts/bfedca0c.html" title="分布式系统(修正版)"><img class="cover" src="https://www.toopic.cn/public/uploads/small/1642747988119164274798811.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-01</div><div class="title">分布式系统(修正版)</div></div></a></div><div><a href="/posts/ea4e979e.html" title="23种设计模式"><img class="cover" src="https://s2.loli.net/2023/05/09/gtd4hzO6FN1D8HT.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-01</div><div class="title">23种设计模式</div></div></a></div><div><a href="/posts/81f1d6e8.html" title="RocketMq篇(修正版)"><img class="cover" src="https://www.toopic.cn/public/uploads/image/20200411/20200411133027_50432.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-01</div><div class="title">RocketMq篇(修正版)</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/self/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">沪指傀儡师</div><div class="author-info__description">迷茫的肥仔︿(￣︶￣)︿</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/hzkls"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dubbo-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9FRPC-%E5%8F%88%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">1.Dubbo 是什么？RPC 又是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Dubbo-%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">2. Dubbo 能做什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%83%BD%E8%AF%B4%E4%B8%8B-Dubbo-%E7%9A%84%E6%80%BB%E4%BD%93%E7%9A%84%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B%E5%90%97%EF%BC%9F"><span class="toc-text">3.能说下 Dubbo 的总体的调用过程吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%AF%B4%E8%AF%B4-Dubbo-%E6%94%AF%E6%8C%81%E5%93%AA%E4%BA%9B%E5%8D%8F%E8%AE%AE%EF%BC%8C%E6%AF%8F%E7%A7%8D%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">4.说说 Dubbo 支持哪些协议，每种协议的应用场景和优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Dubbo-%E4%B8%AD%E9%83%BD%E7%94%A8%E5%88%B0%E5%93%AA%E4%BA%9B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="toc-text">5.Dubbo 中都用到哪些设计模式？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%A6%82%E6%9E%9C-Dubbo-%E4%B8%AD-provider-%E6%8F%90%E4%BE%9B%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%94%B1%E5%A4%9A%E4%B8%AA%E7%89%88%E6%9C%AC%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="toc-text">6.如果 Dubbo 中 provider 提供的服务由多个版本怎么办？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%9C%8D%E5%8A%A1%E6%9A%B4%E9%9C%B2%E7%9A%84%E6%B5%81%E7%A8%8B%E6%98%AF%E6%80%8E%E4%B9%88%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="toc-text">7.服务暴露的流程是怎么样的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8%E7%9A%84%E6%B5%81%E7%A8%8B%E6%98%AF%E6%80%8E%E4%B9%88%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="toc-text">8.服务引用的流程是怎么样的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-Dubbo-%E7%9A%84%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">9.Dubbo 的注册中心有哪些？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E8%81%8A%E8%81%8A-Dubbo-SPI-%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-text">10.聊聊 Dubbo SPI 机制？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-Dubbo-%E7%9A%84-SPi-%E5%92%8C-Java-%E7%9A%84-SPI-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">11.Dubbo 的 SPi 和 Java 的 SPI 有什么区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E6%9C%89%E5%93%AA%E4%BA%9B%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AD%96%E7%95%A5%EF%BC%9F"><span class="toc-text">12.有哪些负载均衡策略？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E9%9B%86%E7%BE%A4%E5%AE%B9%E9%94%99%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">13.集群容错方式有哪些？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E8%AF%B4%E8%AF%B4-Dubbo-%E7%9A%84%E5%88%86%E5%B1%82%EF%BC%9F"><span class="toc-text">14.说说 Dubbo 的分层？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E9%80%9A%E8%BF%87%E4%BB%A3%E7%90%86%E5%AF%B9%E8%B1%A1%E9%80%9A%E4%BF%A1%EF%BC%9F%EF%BC%9F"><span class="toc-text">16.为什么要通过代理对象通信？？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E6%80%8E%E4%B9%88%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AARPC%E6%A1%86%E6%9E%B6%EF%BC%9F"><span class="toc-text">17.怎么设计一个RPC框架？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-Dubbo%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E6%B5%81%E7%A8%8B"><span class="toc-text">18.Dubbo的服务发现流程</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/491079987.html" title="Golang编程思想2-函数式编程"><img src="https://p2.itc.cn/q_70/images03/20210217/f2e520a8a4014112ab51a454d1bcef52.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Golang编程思想2-函数式编程"/></a><div class="content"><a class="title" href="/posts/491079987.html" title="Golang编程思想2-函数式编程">Golang编程思想2-函数式编程</a><time datetime="2022-07-25T14:42:59.000Z" title="发表于 2022-07-25 22:42:59">2022-07-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2854471435.html" title="Golang编程思想（一）——面向接口"><img src="http://www.obzhi.com/wp-content/uploads/2022/03/guyin-scaled.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Golang编程思想（一）——面向接口"/></a><div class="content"><a class="title" href="/posts/2854471435.html" title="Golang编程思想（一）——面向接口">Golang编程思想（一）——面向接口</a><time datetime="2022-07-03T14:05:05.000Z" title="发表于 2022-07-03 22:05:05">2022-07-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/3459106423.html" title="Golang基础入门(四)——面向对象"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181030%2F70f9a2f694284c20b6546de01ae276e1.jpeg&amp;refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1658243109&amp;t=3ebae6d0b19c32b74397227d0da69d28" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Golang基础入门(四)——面向对象"/></a><div class="content"><a class="title" href="/posts/3459106423.html" title="Golang基础入门(四)——面向对象">Golang基础入门(四)——面向对象</a><time datetime="2022-06-19T15:01:14.000Z" title="发表于 2022-06-19 23:01:14">2022-06-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1108898725.html" title="Golang基础入门(三)——内建容器"><img src="https://img1.baidu.com/it/u=3928911048,3831610104&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=1200&amp;h=500" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Golang基础入门(三)——内建容器"/></a><div class="content"><a class="title" href="/posts/1108898725.html" title="Golang基础入门(三)——内建容器">Golang基础入门(三)——内建容器</a><time datetime="2022-06-06T14:14:10.000Z" title="发表于 2022-06-06 22:14:10">2022-06-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1578139801.html" title="Golang基础入门(二)"><img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200814225809/Top-7-Reasons-to-Learn-Golang.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Golang基础入门(二)"/></a><div class="content"><a class="title" href="/posts/1578139801.html" title="Golang基础入门(二)">Golang基础入门(二)</a><time datetime="2022-05-30T09:54:39.000Z" title="发表于 2022-05-30 17:54:39">2022-05-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">回宅快落水</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.15/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.4.3/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '948919f243bbcee33e45',
+      clientSecret: '7d84fd0741584ee8da9edb1ee68d5bfb35ee28e3',
+      repo: 'hzkls.github.io',
+      owner: 'hzkls',
+      admin: ['hzkls'],
+      id: 'f4368acf84f26ee31f9604eb3f9e9847',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    getCSS('https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.css')
+    getScript('https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const findTrueUrl = (array) => {
+    Promise.all(array.map(item =>
+      fetch(item.url).then(resp => resp.json()).then(data => {
+        const urlArray = data.body.match(/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/ig)
+        if (data.user.login === 'utterances-bot') {
+          return urlArray.pop()
+        } else {
+          return urlArray.shift()
+        }
+      })
+    )).then(res => {
+        array = array.map((i,index)=> {
+          return {
+            ...i,
+            url: res[index]
+          }
+        })
+
+        saveToLocal.set('github-newest-comments', JSON.stringify(array), 10/(60*24))
+        generateHtml(array)
+    });
+  }
+
+  const getComment = () => {
+    fetch('https://api.github.com/repos/hzkls/hzkls.github.io/issues/comments?sort=updated&direction=desc&per_page=6&page=1',{
+      "headers": {
+        Accept: 'application/vnd.github.v3.html+json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        const githubArray = data.map(item => {
+          return {
+            'avatar': item.user.avatar_url,
+            'content': changeContent(item.body_html),
+            'nick': item.user.login,
+            'url': item.issue_url,
+            'date': item.updated_at,
+            'githubUrl': item.html_url
+          }
+        })
+        findTrueUrl(githubArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      })
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('github-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script src="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.3/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.3/metingjs/dist/Meting.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

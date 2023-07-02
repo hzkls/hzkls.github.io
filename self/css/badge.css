@@ -1,0 +1,47 @@
+.hzkls-badge-page-title {
+  position: absolute;
+  font-size: 0.7rem;
+  background: #f56c6c;
+  color: white;
+  border-radius: 2.5rem;
+  margin-left: -0.5rem;
+  display: inline-block;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  box-sizing: content-box;
+  width: 2.4rem;
+  text-align: center;
+  font-weight: 300;
+}
+
+.hzkls-badge-post-title {
+  position: absolute;
+  font-size: 0.8rem;
+  background: #f56c6c;
+  color: white;
+  border-radius: 2rem;
+  margin-left: -0.5rem;
+  display: inline-block;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  box-sizing: content-box;
+  width: 2.8rem;
+  text-align: center;
+  font-weight: 400;
+}
+
+.hzkls-badge-sort-title {
+  position: absolute;
+  font-size: 0.5rem;
+  background: #f56c6c;
+  color: white;
+  border-radius: 1rem;
+  margin-left: -0.3rem;
+  display: inline-block;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  box-sizing: content-box;
+  width: 2.4rem;
+  text-align: center;
+  font-weight: 300;
+}
