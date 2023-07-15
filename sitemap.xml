@@ -323,14 +323,14 @@
   </url>
   
   <url>
-    <loc>https://hzkls.github.io/tags/23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>https://hzkls.github.io/tags/RocketMq%E7%AF%87/</loc>
     <lastmod>2023-07-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://hzkls.github.io/tags/RocketMq%E7%AF%87/</loc>
+    <loc>https://hzkls.github.io/tags/23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2023-07-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -351,6 +351,13 @@
   </url>
   
   <url>
+    <loc>https://hzkls.github.io/tags/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E7%AF%87/</loc>
+    <lastmod>2023-07-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://hzkls.github.io/tags/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4%E4%B8%93%E6%A0%8F/</loc>
     <lastmod>2023-07-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -359,13 +366,6 @@
   
   <url>
     <loc>https://hzkls.github.io/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9B%86%E5%90%88/</loc>
-    <lastmod>2023-07-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://hzkls.github.io/tags/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E7%AF%87/</loc>
     <lastmod>2023-07-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -465,14 +465,14 @@
 
   
   <url>
-    <loc>https://hzkls.github.io/categories/java%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87/</loc>
+    <loc>https://hzkls.github.io/categories/Go%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-%E6%97%A7%E7%89%88/</loc>
     <lastmod>2023-07-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://hzkls.github.io/categories/Go%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-%E6%97%A7%E7%89%88/</loc>
+    <loc>https://hzkls.github.io/categories/java%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87/</loc>
     <lastmod>2023-07-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
