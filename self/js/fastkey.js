@@ -44,28 +44,37 @@ function resize() {
     document.body.innerHTML = `<div style="text-align:center;font-size: 200px;background:#fff;color:#707070">
     404
   </div>`
-    Snackbar.show({text:"请禁用控制台"})
+    Snackbar.show({ text: "请禁用控制台" })
     debugger
     window.location.reload()
   }
 }
 window.addEventListener('resize', resize);
-window.onload = resize
 
 function fastKeyTips() {
-    if(localStorage.getItem("tipsKnown")!='true'){
-      Snackbar.show({
-        text: '现在支持使用快捷键控制。 上一篇 ctrl + ← / 下一篇 ctrl + → ',
-        actionTextColor:'#cccccc',
-        pos:'top-center',
-        actionText: '我知道了',
-        backgroundColor: '#409EFF',
-        onActionClick: function (element) {
-          localStorage.setItem("tipsKnown",'true')
-          element.remove()
-        }
-      });
-    }
+  
+  if (localStorage.getItem("tipsKnown") != 'true') {
+    Snackbar.show({
+      text: '现在支持使用快捷键控制。 上一篇 ctrl + ← / 下一篇 ctrl + → ',
+      actionTextColor: '#cccccc',
+      pos: 'top-center',
+      actionText: '我知道了',
+      backgroundColor: '#A0CFFF',
+      onActionClick: function (element) {
+        localStorage.setItem("tipsKnown", 'true')
+        element.remove()
+      }
+    });
+  }
 }
 
-setTimeout(fastKeyTips,1000);
+
+(function(){
+  resize()
+  fastKeyTips()
+  // DisableDevtool({
+  //   ondevtoolopen: (type) => {
+  //       window.location.reload()
+  //   },
+  // })
+})()
