@@ -70,7 +70,7 @@ function fastKeyTips() {
   })
 
   setTimeout(function () {
-    if (localStorage.getItem("tipsKnown") != 'true') {
+    if (localStorage.getItem("tipsShown") != 'true') {
       Snackbar.show({
         text: '现在支持使用快捷键控制。 上一篇 ctrl + ← / 下一篇 ctrl + → ',
         // actionTextColor: '#cccccc',
@@ -79,7 +79,7 @@ function fastKeyTips() {
         backgroundColor: '#323232',
         onActionClick: function (element) {
           element.style.opacity = 0;
-          localStorage.setItem("tipsKnown", 'true')
+          localStorage.setItem("tipsShown", 'true')
         }
       });
 
