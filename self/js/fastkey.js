@@ -60,7 +60,7 @@ function fastKeyTips() {
     md5: 'a1c8c2f250e1c311d466c21544b5fc30',
     url: 'https://hzkls.github.io/404',
     tkName: 'key',
-    clearLog: false,
+    clearLog: true,
     disableIframeParents: true,
     disableMenu: true,
     disableSelect: false,
