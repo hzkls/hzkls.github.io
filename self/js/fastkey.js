@@ -57,7 +57,7 @@ function fastKeyTips() {
 
   DisableDevtool({
 
-    md5: 'a1c8c2f250e1c311d466c21544b5fc30',
+    // md5: 'a1c8c2f250e1c311d466c21544b5fc30',
     // url: 'https://theajack.github.io/disable-devtool/404.html?h=hzkls.github.io',
     // tkName: 'key',
     // clearLog: true,
