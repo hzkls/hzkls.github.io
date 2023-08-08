@@ -55,19 +55,19 @@ function fastKeyTips() {
 
 (function () {
 
-  DisableDevtool({
+  // DisableDevtool({
 
-    // md5: 'a1c8c2f250e1c311d466c21544b5fc30',
-    // url: 'https://theajack.github.io/disable-devtool/404.html?h=hzkls.github.io',
-    // tkName: 'key',
-    // clearLog: true,
-    // disableIframeParents: true,
-    // disableMenu: true,
-    // disableSelect: false,
-    // disableCopy: false,
-    // disablePaste: false,
-    // timeOutUrl: 'https://theajack.github.io/disable-devtool/404.html?h=hzkls.github.io'
-  })
+  //   // md5: 'a1c8c2f250e1c311d466c21544b5fc30',
+  //   // url: 'https://theajack.github.io/disable-devtool/404.html?h=hzkls.github.io',
+  //   // tkName: 'key',
+  //   // clearLog: true,
+  //   // disableIframeParents: true,
+  //   // disableMenu: true,
+  //   // disableSelect: false,
+  //   // disableCopy: false,
+  //   // disablePaste: false,
+  //   // timeOutUrl: 'https://theajack.github.io/disable-devtool/404.html?h=hzkls.github.io'
+  // })
 
   setTimeout(function () {
     if (localStorage.getItem("tipsShown") != 'true') {
