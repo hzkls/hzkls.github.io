@@ -1,35 +1,32 @@
-// document.onkeydown = e => {
-//   console.log(e)
-//   if (e.code == 'ArrowRight' && e.ctrlKey) {
+document.onkeydown = e => {
+  if (e.code == 'ArrowRight' && e.ctrlKey) {
 
-//     var $div = document.getElementsByClassName("next-post")
-//     console.log($div)
-//     if ($div) {
-//       console.log("下一篇")
-//       $div[0].children[0].click();
-//     }
-//   } else if (e.code == 'ArrowLeft' && ctrlKey) {
+    var $div = document.getElementsByClassName("next-post")
+    console.log($div)
+    if ($div) {
+      $div[0].children[0].click();
+    }
+  } else if (e.code == 'ArrowLeft' && e.ctrlKey) {
 
-//     var $div = document.getElementsByClassName("prev-post")
-//     if ($div) {
-//       console.log("上一篇")
-//       $div[0].children[0].click();
-//     }
-//   } else if (e.code == 'KeyC' && e.ctrlKey) {
-//     console.error(".........")
-//     window.location.href = '/'
-//     return false
-//   } else if (e.code == 'F12') {
-//     console.error(".........")
-//     window.location.href = '/'
-//     return false
-//   } else if (e.code == 'KeyI' && e.ctrlKey && e.shiftKey) {
-//     window.location.href = '/'
-//     return false
-//   } else if (e.code == 'KeyS' && e.ctrlKey) {
-//     return false
-//   }
-// }
+    var $div = document.getElementsByClassName("prev-post")
+    if ($div) {
+      $div[0].children[0].click();
+    }
+  } else if (e.code == 'KeyC' && e.ctrlKey) {
+    console.error(".........")
+    window.location.href = '/'
+    return false
+  } else if (e.code == 'F12') {
+    console.error(".........")
+    window.location.href = '/'
+    return false
+  } else if (e.code == 'KeyI' && e.ctrlKey && e.shiftKey) {
+    window.location.href = '/'
+    return false
+  } else if (e.code == 'KeyS' && e.ctrlKey) {
+    return false
+  }
+}
 
 
 // function resize() {
