@@ -195,14 +195,14 @@ const btf = {
   isHidden: ele => ele.offsetHeight === 0 && ele.offsetWidth === 0,
 
   getEleTop: ele => {
-    console.log(ele.offsetTop)
     let actualTop = ele.offsetTop
     let current = ele.offsetParent
+
     while (current !== null) {
       actualTop += current.offsetTop
       current = current.offsetParent
     }
-    
+
     return actualTop
   },
 
