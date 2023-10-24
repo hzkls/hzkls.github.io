@@ -16,10 +16,6 @@ document.onkeydown = e => {
     console.error(".........")
     window.location.href = '/'
     return false
-  } else if (e.code == 'F12') {
-    console.error(".........")
-    window.location.href = '/'
-    return false
   } else if (e.code == 'KeyI' && e.ctrlKey && e.shiftKey) {
     window.location.href = '/'
     return false
@@ -29,42 +25,8 @@ document.onkeydown = e => {
 }
 
 
-// function resize() {
-//   var threshold = 200;
-//   var widthThreshold = window.outerWidth - window.innerWidth > threshold;
-//   var heightThreshold = window.outerHeight - window.innerHeight > threshold;
-//   if (widthThreshold || heightThreshold) {
-//     document.body.innerHTML = `<div style="text-align:center;font-size: 200px;background:#fff;color:#707070">
-//     404
-//   </div>`
-//     Snackbar.show({ text: "请禁用控制台" })
-//     debugger
-//     window.location.reload()
-//   }
-// }
-// window.addEventListener('resize', resize);
-
-function fastKeyTips() {
-
-
-}
-
-
 (function () {
 
-  // DisableDevtool({
-
-  //   // md5: 'a1c8c2f250e1c311d466c21544b5fc30',
-  //   // url: 'https://theajack.github.io/disable-devtool/404.html?h=hzkls.github.io',
-  //   // tkName: 'key',
-  //   // clearLog: true,
-  //   // disableIframeParents: true,
-  //   // disableMenu: true,
-  //   // disableSelect: false,
-  //   // disableCopy: false,
-  //   // disablePaste: false,
-  //   // timeOutUrl: 'https://theajack.github.io/disable-devtool/404.html?h=hzkls.github.io'
-  // })
 
   setTimeout(function () {
     if (localStorage.getItem("tipsShown") != 'true') {
