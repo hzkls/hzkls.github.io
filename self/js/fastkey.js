@@ -2,15 +2,28 @@ document.onkeydown = e => {
   if (e.code == 'ArrowRight' && e.ctrlKey) {
 
     var $div = document.getElementsByClassName("next-post")
-    console.log($div)
-    if ($div) {
+    if ($div.length > 0) {
       $div[0].children[0].click();
+    } else {
+      Snackbar.show({
+        text: '没有下一篇了~',
+        pos: 'top-center',
+        backgroundColor: '#323232',
+        showAction: false
+      });
     }
   } else if (e.code == 'ArrowLeft' && e.ctrlKey) {
 
     var $div = document.getElementsByClassName("prev-post")
-    if ($div) {
+    if ($div.length > 0) {
       $div[0].children[0].click();
+    } else {
+      Snackbar.show({
+        text: '没有上一篇了~',
+        pos: 'top-center',
+        backgroundColor: '#323232',
+        showAction: false
+      });
     }
   } else if (e.code == 'KeyC' && e.ctrlKey) {
     console.error(".........")
@@ -26,7 +39,6 @@ document.onkeydown = e => {
 
 
 (function () {
-
 
   setTimeout(function () {
     if (localStorage.getItem("tipsShown") != 'true') {
@@ -44,5 +56,5 @@ document.onkeydown = e => {
 
     }
   }, 1000)
-  
+
 })()
