@@ -8,7 +8,7 @@ document.onkeydown = e => {
       Snackbar.show({
         text: '没有下一篇了~',
         pos: 'top-center',
-        backgroundColor: '#323232',
+        backgroundColor: 'rgba(48,48,48,0.5)',
         showAction: false
       });
     }
@@ -21,7 +21,7 @@ document.onkeydown = e => {
       Snackbar.show({
         text: '没有上一篇了~',
         pos: 'top-center',
-        backgroundColor: '#323232',
+        backgroundColor: 'rgba(48,48,48,0.5)',
         showAction: false
       });
     }
@@ -47,7 +47,7 @@ document.onkeydown = e => {
         // actionTextColor: '#cccccc',
         pos: 'top-center',
         actionText: '我知道了',
-        backgroundColor: '#323232',
+        backgroundColor: 'rgba(48,48,48,0.5)',
         onActionClick: function (element) {
           element.style.opacity = 0;
           localStorage.setItem("tipsShown", 'true')

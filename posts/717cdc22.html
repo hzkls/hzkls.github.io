@@ -493,9 +493,11 @@
   $d.style.width = '100%' 
   $d.style.zIndex = 1
   $d.style.textAlign = 'center'
+  $d.style.background = 'rgba(48, 48, 48,0.7)'
+  $d.style.opacity = 0.4
   $d.id = 'cover-flash'
   $d.style.setProperty('--animate-duration', '1s')
-  //- $d.style.setProperty('--animate-delay:', '1s')
+  //- $d.style.setProperty('--animate-delay', '1s')
   $d.className = 'animate__animated animate__rotateOut animate__delay-1s'
   
   document.body.prepend($d)
