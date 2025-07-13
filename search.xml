@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>互金风控</title>
+      <link href="/posts/857f0748.html"/>
+      <url>/posts/857f0748.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="风控系统架构">风控系统架构</h2><p><img src="https://s2.loli.net/2025/07/13/A6YVOpze8bUg1Rr.png" alt="风控系统架构"></p><h2 id="风控授信流程">风控授信流程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">  participant A as 产品服务</span><br><span class="line">  participant B as 审批服务</span><br><span class="line">  participant C as 指标计算</span><br><span class="line">  participant D as 特征计算</span><br><span class="line">  participant E as 决策引擎</span><br><span class="line">  participant F as 资信系统</span><br><span class="line">  participant G as 变量存储</span><br><span class="line">  participant H as 模型引擎</span><br><span class="line">  </span><br><span class="line">  A-&gt;&gt;B: 提交审批申请</span><br><span class="line">  B-&gt;&gt;C: 准入检查，数据核准</span><br><span class="line">  C--&gt;&gt;B: </span><br><span class="line">  B-&gt;&gt;D: 准入策略101</span><br><span class="line">  D--&gt;&gt;B: </span><br><span class="line">  D-&gt;&gt;E: 执行策略</span><br><span class="line">    E-&gt;&gt;G: 输入输出数据落地</span><br><span class="line">    E--&gt;&gt;D: </span><br><span class="line">    B-&gt;&gt;F: 查询相关资信</span><br><span class="line">    F--&gt;&gt;B: </span><br><span class="line">    B-&gt;&gt;D: 执行策略200 </span><br><span class="line">    D-&gt;&gt;E: 执行策略</span><br><span class="line">    E-&gt;&gt;G: 输入输出数据落地</span><br><span class="line">    E--&gt;&gt;D: </span><br><span class="line">    D--&gt;&gt;B: </span><br><span class="line">    D-&gt;&gt;H: 调用模型引擎</span><br><span class="line">    D--&gt;&gt;B: </span><br><span class="line">    B-&gt;&gt;D: 执行策略301</span><br><span class="line">    D-&gt;&gt;E: 执行策略</span><br><span class="line">    E-&gt;&gt;G: 输入输出数据落地</span><br><span class="line">    E--&gt;&gt;D: </span><br><span class="line">    D--&gt;&gt;B:     </span><br></pre></td></tr></table></figure><h2 id="资信平台架构设计">资信平台架构设计</h2><p><img src="https://s2.loli.net/2025/07/13/DCo7zc4WGfABkqP.jpg" alt="资信平台架构设计"></p><h2 id="决策引擎">决策引擎</h2><p><img src="https://s2.loli.net/2025/07/13/Sx6ZusoRWJeYniD.jpg" alt="决策引擎总体架构"></p><p><img src="https://s2.loli.net/2025/07/13/2dJmkRGjlpqNeOr.jpg" alt="决策引擎策略管理"></p><p><img src="https://s2.loli.net/2025/07/13/atnLoCFBeVgwZlq.png" alt="决策引擎监控管理"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> java面试八股文 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java面试八股文 </tag>
+            
+            <tag> 23种设计模式 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MongoDB高手课笔记</title>
       <link href="/posts/ecf99c50.html"/>
       <url>/posts/ecf99c50.html</url>
