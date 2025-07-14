@@ -573,7 +573,7 @@
 <p>上面已经讲了，主要是在哈希表这种结构中用的到。</p>
 <p>例如 HashMap 怎么把 key 映射到对应的 value 上呢？用的就是哈希取余法，也就是拿哈希码和存储元素的数组的长度取余，获取 key 对应的 value 所在的下标位置。</p>
 <blockquote>
-<p>为什么重写 quals 时必须重写 hashCode ⽅法？</p>
+<p>为什么重写 equals 时必须重写 hashCode ⽅法？</p>
 </blockquote>
 <p>如果两个对象相等，则 hashcode ⼀定也是相同的。两个对象相等，对两个对象分别调⽤ equals ⽅法都返回 true。反之，两个对象有相同的 hashcode 值，它们也不⼀定是相等的 。因此，<strong>equals</strong> ⽅法被覆盖过，则 <strong>hashCode</strong> ⽅法也必须被覆盖。</p>
 <p>hashCode() 的默认⾏为是对堆上的对象产⽣独特值。如果没有重写 hashCode() ，则该 class 的两个对象⽆论如何都不会相等（即使这两个对象指向相同的数据）</p>

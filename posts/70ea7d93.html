@@ -256,7 +256,7 @@
 <li>not in 和 not exists：如果查询语句使用了 not in，那么内外表都进行全表扫描，没有用到索引；而 not exists 的子查询依然能用到表上的索引。所以无论那个表大，用 not exists 都比 not in 要快。</li>
 </ol>
 <h3 id="MySQL-里记录货币用什么字段类型比较好？">MySQL 里记录货币用什么字段类型比较好？</h3>
-<p>货币在数据库中 MySQL 常用 Decimal 和 Numric 类型表示，这两种类型被 MySQL 实现为同样的类型。他们被用于保存与货币有关的数据。</p>
+<p>货币在数据库中 MySQL 常用 Decimal 和 Numeric 类型表示，这两种类型被 MySQL 实现为同样的类型。他们被用于保存与货币有关的数据。</p>
 <p>例如 salary DECIMAL(9,2)，9(precision)代表将被用于存储值的总的小数位数，而 2(scale)代表将被用于存储小数点后的位数。存储在 salary 列中的值的范围是从-9999999.99 到 9999999.99。</p>
 <p>DECIMAL 和 NUMERIC 值作为字符串存储，而不是作为二进制浮点数，以便保存那些值的小数精度。</p>
 <p>之所以不使用 float 或者 double 的原因：因为 float 和 double 是以二进制存储的，所以有一定的误差。</p>
