@@ -351,7 +351,7 @@
 </blockquote>
 <p>Consumer Group与Consumer的关系是动态维护的，当一个Consumer进程挂掉或者是卡住时，该Consumer所订阅的Partition会被重新分配到改组内的其他Consumer上，当一个Consumer加入到一个Consumer Group中时，同样会从其他的Consumer中分配出一个或者多个Partition到这个新加入的Consumer。</p>
 <p><strong>负载均衡</strong></p>
-<p>当启动一个Consumer时，会指定它要加入的Group，使用的配置项是：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://group.id/">Group.idopen in new window</a></p>
+<p>当启动一个Consumer时，会指定它要加入的Group，使用的配置项是：<code>group.id</code></p>
 <p>为了维持Consumer与Consumer Group之间的关系，Consumer 会周期性地发送 hearbeat 到 coodinator（协调者），如果有 hearbeat 超时或未收到 hearbeat，coordinator 会认为该Consumer已经退出，那么它所订阅的Partition会分配到同一组内的其他Consumer上，这个过程称为 rebalance（再平衡）</p>
 <h2 id="Kafka-中消息偏移的作用">Kafka 中消息偏移的作用</h2>
 <p>生产过程中给分区中的消息提供一个顺序ID号，称之为偏移量，偏移量在每个分区中唯一。Kafka的存储文件都是按照offset.kafka来命名</p>
