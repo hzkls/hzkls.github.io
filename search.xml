@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>AI编程工具规则文件使用——以cursor为例</title>
+      <link href="/posts/46139f0f.html"/>
+      <url>/posts/46139f0f.html</url>
+      
+        <content type="html"><![CDATA[<div class="note info flat"><p><strong>.cursorrules</strong> 是cursor提供的一种特殊的配置文件，它允许开发者通过简单的文本指令来定制和控制AI助手的行为。这个文件通常放置在项目根目录，对整个项目生效，也可以放在子目录中对特定的模块生效。其他的IDE也有类似的功能，例如trea，使用的是markdown文件，放置在 <strong>.trea/rules</strong> 下，可以在 <strong>设置&gt;&gt;规则中配置</strong> 。详情可以看 <a href="https://docs.trae.cn/ide/rules">trea的官方文档</a></p></div><h2 id="项目规则存放处">项目规则存放处</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">项目根目录/</span><br><span class="line">┝ .cursorrules   # 全局规则文件</span><br><span class="line">┝ src/</span><br><span class="line">| ┝ .cursorrules # 仅对src目录生效的规则</span><br><span class="line">| ┝ components/</span><br><span class="line">┝ ...</span><br></pre></td></tr></table></figure><h2 id="传统AI编程助手存在的主要问题">传统AI编程助手存在的主要问题</h2><ul><li><strong>上下文理解有限</strong>：不了解项目特定的架构和规范</li><li><strong>知识边界模糊</strong>：对业务领域只是缺乏理解</li><li><strong>行为不一致</strong>：不同开发者得到不同风格的代码</li><li><strong>质量难保证</strong>：生成的代码可能不符合团队的标准</li></ul><h2 id="cursorrules文件解决这些问题">.cursorrules文件解决这些问题</h2><ul><li><p><strong>项目只是注入</strong>：让 AI 理解项目架构和业务领域</p></li><li><p><strong>行为标准化</strong>：确保所有团队成员获得一致的 AI 响应</p></li><li><p><strong>质量保障</strong>：强制执行代码规范和最佳实践</p></li><li><p><strong>效率提升</strong>：减少重复指导 AI 的时间成本</p></li></ul><h2 id="规则文件的基本结构">规则文件的基本结构</h2><ol><li><p>角色定义</p><div class="note info flat"><p>你是一名专注于React前端开发的资深工程师，擅长组建设计和性能优化。</p><p>你熟悉本项目的架构和代码规范，会严格按照项目要求提供建议。</p></div></li><li><p>知识注入</p><div class="note info flat"><p>本项目采用Clean Architecture架构，分为以下层次</p><ol><li>Presentation Layer：React组建和Hooks</li><li>Domain Layer：业务逻辑和实体模型</li><li>Data Layer：API调用和数据处理</li></ol></div></li><li><p>行为规则</p><div class="note info flat"><ul><li>所有组件必须使用函数式组件</li><li>使用typescript类型定义</li><li>状态管理有限使用React Context和Hooks</li><li>样式采用Css Modules方案</li></ul></div></li><li><p>响应格式</p><div class="note info flat"><p>回答问题时，请遵循以下结构</p><ol><li>简要总结问题</li><li>提供解决方案</li><li>解释实现原理</li><li>给出完整代码示例</li></ol></div></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI编程工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI编程工具 </tag>
+            
+            <tag> cursor教程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>互金风控</title>
       <link href="/posts/857f0748.html"/>
       <url>/posts/857f0748.html</url>
