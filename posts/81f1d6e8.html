@@ -264,19 +264,13 @@
 <h3 id="消息队列有哪些消息模型？">消息队列有哪些消息模型？</h3>
 <p>消息队列有两种模型：<strong>队列模型</strong>和<strong>发布/订阅模型</strong>。</p>
 <ul>
-<li><strong>队列模型</strong></li>
+<li><strong>队列模型</strong>：这是最初的一种消息队列模型，对应着消息队列“发-存-收”的模型。<strong>生产者</strong>往某个队列里面发送消息，一个队列可以存储多个生产者的消息，一个队列也可以有多个消费者，但是<strong>消费者</strong>之间是竞争关系，也就是说每条消息只能被一个消费者消费。</li>
 </ul>
-<p>​	这是最初的一种消息队列模型，对应着消息队列“发-存-收”的模型。<strong>生产者</strong>往某个队列里面发送消息，一个队列可以存储多个生产者	的消息，一个队列也可以有多个消费者，但是<strong>消费者</strong>之间是竞争关系，也就是说每条消息只能被一个消费者消费。</p>
 <p><img src="https://s2.loli.net/2023/08/08/TqSKHgktdu9vJhE.png" alt="队列模型"></p>
 <ul>
-<li>
-<p><strong>发布/订阅模型</strong></p>
-<p>如果需要将一份消息数据分发给多个消费者，并且每个消费者都要求收到全量的消息。很显然，队列模型无法满足这个需求。解决的方式就是发布/订阅模型。</p>
-</li>
+<li><strong>发布/订阅模型</strong>：如果需要将一份消息数据分发给多个消费者，并且每个消费者都要求收到全量的消息。很显然，队列模型无法满足这个需求。解决的方式就是发布/订阅模型。在发布 - 订阅模型中，消息的发送方称为<strong>发布者</strong>（Publisher），消息的接收方称为<strong>订阅者</strong>（Subscriber），服务端存放消息的容器称为<strong>主题</strong>（Topic）。<strong>发布者</strong>将消息发送到<strong>主题</strong>中，<strong>订阅者</strong>在接收消息之前需要先“订阅主题”。“订阅”在这里既是一个动作，同时还可以认为是主题在消费时的一个逻辑副本，每份订阅中，订阅者都可以接收到主题的所有消息。</li>
 </ul>
-<p>​	在发布 - 订阅模型中，消息的发送方称为<strong>发布者</strong>（Publisher），消息的接收方称为<strong>订阅者</strong>（Subscriber），服务端存放消息的容器称	为<strong>主题</strong>（Topic）。<strong>发布者</strong>将消息发送到<strong>主题</strong>中，<strong>订阅者</strong>在接收消息之前需要先“订阅主题”。“订阅”在这里既是一个动作，同时还可以	认为是主题在消费时的一个逻辑副本，每份订阅中，订阅者都可以接收到主题的所有消息。</p>
-<p>​	<img src="https://s2.loli.net/2023/08/08/TFf7ObDUHGuNzev.png" alt="发布-订阅模型"></p>
-<p>​	它和 “队列模式” 的异同：生产者就是发布者，队列就是主题，消费者就是订阅者，无本质区别。唯一的不同点在于：一份消息数据	是否可以被多次消费。</p>
+<p>​	<img src="https://s2.loli.net/2023/08/08/TFf7ObDUHGuNzev.png" alt="发布-订阅模型">它和 “队列模式” 的异同：生产者就是发布者，队列就是主题，消费者就是订阅者，无本质区别。唯一的不同点在于：一份消息数据	是否可以被多次消费。</p>
 <h3 id="那RocketMQ的消息模型呢？">那RocketMQ的消息模型呢？</h3>
 <p>RocketMQ使用的消息模型是标准的发布-订阅模型，在RocketMQ的术语表中，生产者、消费者和主题，与发布-订阅模型中的概念是完全一样的。</p>
 <p>RocketMQ本身的消息是由下面几部分组成：</p>
@@ -313,7 +307,7 @@
 <p><img src="https://s2.loli.net/2023/08/08/7lyq8VrfIGEdZgD.png" alt="RocketMQ架构"></p>
 <p>RocketMQ 一共有四个部分组成：NameServer，Broker，Producer 生产者，Consumer 消费者，它们对应了：发现、发、存、收，为了保证高可用，一般每一部分都是集群部署的。</p>
 <h3 id="那能介绍一下这四部分吗？">那能介绍一下这四部分吗？</h3>
-<p>类比一下我们生活的邮政系统——</p>
+<p>类比一下我们生活的邮政系统：</p>
 <p>邮政系统要正常运行，离不开下面这四个角色， 一是发信者，二 是收信者， 三是负责暂存传输的邮局， 四是负责协调各个地方邮局的管理机构。对应到 RocketMQ 中，这四个角色就是 Producer、 Consumer、 Broker 、NameServer。</p>
 <p><img src="https://s2.loli.net/2023/08/08/MTrahHd5KV1i8IE.png" alt="RocketMQ类比邮政体系"></p>
 <h4 id="NameServer">NameServer</h4>
@@ -377,14 +371,14 @@
 </ul>
 <h4 id="存储">存储</h4>
 <p>存储阶段，可以通过<strong>配置可靠性优先的 Broker 参数来避免因为宕机丢消息</strong>，简单说就是可靠性优先的场景都应该使用同步。</p>
-<ul>
-<li>1、消息只要持久化到CommitLog（日志文件）中，即使Broker宕机，未消费的消息也能重新恢复再消费。</li>
-<li>2、Broker的刷盘机制：同步刷盘和异步刷盘，不管哪种刷盘都可以保证消息一定存储在pagecache中（内存中），但是同步刷盘更可靠，它是Producer发送消息后等数据持久化到磁盘之后再返回响应给Producer。</li>
-</ul>
+<ol>
+<li>消息只要持久化到CommitLog（日志文件）中，即使Broker宕机，未消费的消息也能重新恢复再消费。</li>
+<li>Broker的刷盘机制：同步刷盘和异步刷盘，不管哪种刷盘都可以保证消息一定存储在pagecache中（内存中），但是同步刷盘更可靠，它是Producer发送消息后等数据持久化到磁盘之后再返回响应给Producer。</li>
+</ol>
 <p><img src="https://s2.loli.net/2023/08/08/qku4gt3pxcnY6KX.png" alt="同步刷盘和异步刷盘-图片来源官网"></p>
-<ul>
-<li>3、Broker通过主从模式来保证高可用，Broker支持Master和Slave同步复制、Master和Slave异步复制模式，生产者的消息都是发送给Master，但是消费既可以从Master消费，也可以从Slave消费。同步复制模式可以保证即使Master宕机，消息肯定在Slave中有备份，保证了消息不会丢失。</li>
-</ul>
+<ol start="3">
+<li>Broker通过主从模式来保证高可用，Broker支持Master和Slave同步复制、Master和Slave异步复制模式，生产者的消息都是发送给Master，但是消费既可以从Master消费，也可以从Slave消费。同步复制模式可以保证即使Master宕机，消息肯定在Slave中有备份，保证了消息不会丢失。</li>
+</ol>
 <h4 id="消费">消费</h4>
 <p>从Consumer角度分析，如何保证消息被成功消费？</p>
 <ul>
