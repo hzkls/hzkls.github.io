@@ -277,19 +277,19 @@
 <p><img src="https://s2.loli.net/2023/08/08/zV3gyo168CKARb4.png" alt="RocketMQ消息的组成"></p>
 <ul>
 <li>
-<p><strong>Message</strong>（消息）就是要传输的信息。一条消息必须有一个主题（Topic），主题可以看做是你的信件要邮寄的地址。一条消息也可以拥有一个可选的标签（Tag）和额处的键值对，它们可以用于设置一个业务 Key 并在 Broker 上查找此消息以便在开	发期间查找问题。</p>
+<p><strong>Message</strong>（消息）：就是要传输的信息。一条消息必须有一个主题（Topic），主题可以看做是你的信件要邮寄的地址。一条消息也可以拥有一个可选的标签（Tag）和额处的键值对，它们可以用于设置一个业务 Key 并在 Broker 上查找此消息以便在开	发期间查找问题。</p>
 </li>
 <li>
-<p><strong>Topic</strong>（主题）可以看做消息的归类，它是消息的第一级类型。比如一个电商系统可以分为：交易消息、物流消息等，一条消息必须有一个 Topic 。<strong>Topic</strong> 与生产者和消费者的关系非常松散，一个 Topic 可以有0个、1个、多个生产者向其发送消息，一个生产者也可以同时向不同的Topic 发送消息。一个 Topic 也可以被 0个、1个、多个消费者订阅。</p>
+<p><strong>Topic</strong>（主题）：可以看做消息的归类，它是消息的第一级类型。比如一个电商系统可以分为：交易消息、物流消息等，一条消息必须有一个 Topic 。<strong>Topic</strong> 与生产者和消费者的关系非常松散，一个 Topic 可以有0个、1个、多个生产者向其发送消息，一个生产者也可以同时向不同的Topic 发送消息。一个 Topic 也可以被 0个、1个、多个消费者订阅。</p>
 </li>
 <li>
-<p><strong>Tag</strong>（标签）可以看作子主题，它是消息的第二级类型，用于为用户提供额外的灵活性。使用标签，同一业务模块不同目的的消息。就可以用相同 Topic 而不同的 <strong>Tag</strong> 来标识。比如交易消息又可以分为：交易创建消息、交易完成消息等，一条消息可以没有 <strong>Tag</strong> 。标签有助于保持你的代码干净和连贯，并且还可以为 <strong>RocketMQ</strong> 提供的查询系统提供帮助。</p>
+<p><strong>Tag</strong>（标签）：可以看作子主题，它是消息的第二级类型，用于为用户提供额外的灵活性。使用标签，同一业务模块不同目的的消息。就可以用相同 Topic 而不同的 <strong>Tag</strong> 来标识。比如交易消息又可以分为：交易创建消息、交易完成消息等，一条消息可以没有 <strong>Tag</strong> 。标签有助于保持你的代码干净和连贯，并且还可以为 <strong>RocketMQ</strong> 提供的查询系统提供帮助。</p>
 </li>
 <li>
-<p><strong>Group</strong>：RocketMQ中，订阅者的概念是通过消费组（Consumer Group）来体现的。每个消费组都消费主题中一份完整的消息，不同消费组之	间消费进度彼此不受影响，也就是说，一条消息被Consumer Group1消费过，也会再给Consumer Group2消费。消费组中包含多个消费者，同一个组内的消费者是竞争消费的关系，每个消费者负责消费组内的一部分消息。默认情况，如果一条消息被消费者Consumer1消费了，那同组的其他消费者就不会再收到这条消息。</p>
+<p><strong>Consumer Group</strong>：RocketMQ中，订阅者的概念是通过消费组（Consumer Group）来体现的。每个消费组都消费主题中一份完整的消息，不同消费组之间消费进度彼此不受影响，也就是说，一条消息被Consumer Group1消费过，也会再给Consumer Group2消费。消费组中包含多个消费者，同一个组内的消费者是竞争消费的关系，每个消费者负责消费组内的一部分消息。默认情况，如果一条消息被消费者Consumer1消费了，那同组的其他消费者就不会再收到这条消息。</p>
 </li>
 <li>
-<p><strong>Message Queue</strong>（消息队列），一个 Topic 下可以设置多个消息队列，Topic 包括多个 Message Queue ，如果一个 Consumer 需要获取 Topic下所有的消息，就要遍历所有的 Message Queue。RocketMQ还有一些其它的Queue——例如ConsumerQueue。</p>
+<p><strong>Message Queue</strong>（消息队列）：一个 Topic 下可以设置多个消息队列，Topic 包括多个 Message Queue ，如果一个 Consumer 需要获取 Topic下所有的消息，就要遍历所有的 Message Queue。RocketMQ还有一些其它的Queue——例如ConsumerQueue。</p>
 </li>
 <li>
 <p><strong>Offset</strong>：在Topic的消费过程中，由于消息需要被不同的组进行多次消费，所以消费完的消息并不会立即被删除，这就需RocketMQ为每个消费组在每个队列上维护一个消费位置（Consumer Offset），这个位置之前的消息都被消费过，之后的消息都没有被消费过，每成功消费一条消息，消费位置就加一。也可以这么说，<code>Queue</code> 是一个长度无限的数组，<strong>Offset</strong> 就是下标。</p>
@@ -300,7 +300,7 @@
 <h3 id="消息的消费模式了解吗？">消息的消费模式了解吗？</h3>
 <p>消息消费模式有两种：<strong>Clustering</strong>（集群消费）和<strong>Broadcasting</strong>（广播消费）。</p>
 <p><img src="https://s2.loli.net/2023/08/08/ZQFpPecAikLmlzh.png" alt="两种消费模式"></p>
-<p>默认情况下就是集群消费，这种模式下<code>一个消费者组共同消费一个主题的多个队列，一个队列只会被一个消费者消费</code>，如果某个消费者挂掉，分组内其它消费者会接替挂掉的消费者继续消费。</p>
+<p>默认情况下就是集群消费，这种模式下 <strong>一个消费者组共同消费一个主题的多个队列，一个队列只会被一个消费者消费</strong>，如果某个消费者挂掉，分组内其它消费者会接替挂掉的消费者继续消费。</p>
 <p>而广播消费消息会发给消费者组中的每一个消费者进行消费。</p>
 <h3 id="RoctetMQ基本架构了解吗？">RoctetMQ基本架构了解吗？</h3>
 <p>先看图，RocketMQ的基本架构：</p>
